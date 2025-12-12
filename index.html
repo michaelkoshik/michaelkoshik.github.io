@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#131215">
+  <meta name="msapplication-navbutton-color" content="#131215">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta property="og:title" content="Michael Koshik" />
+  <meta property="og:description" content="Personal website" />
+  <meta property="og:image" content="assets/favicon.ico" />
+  <meta property="og:url" content="https://www.michaelkoshik.com" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Michael Koshik" />
+  <meta name="twitter:description" content="Personal website" />
+  <meta name="twitter:image" content="assets/favicon.ico" />
+  <link rel="icon" type="image/png" href="assets/favicon.ico">
+  <title>Michael Koshik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <video id="bg-video" src="assets/videos/background.mp4" autoplay muted loop playsinline></video>
+
+  <div id="start-overlay">
+    <button id="start-btn">Click to continue</button>
+  </div>
+
+  <div class="container" id="card">
+    <div class="column">
+      <img src="assets/images/avatar.png" alt="Avatar" class="avatar">
+      <h1>Michael Koshik</h1>
+      <p>Welcome to my personal website!</p>
+    </div>
+    <div class="column">
+      <ul class="links">
+        <li><a href="https://www.instagram.com/michaelkoshik" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i>Instagram</a></li>
+        <li><a href="https://michaelkoshik.t.me" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i>Telegram</a></li>
+        <li><a href="https://steamcommunity.com/id/michaelkoshik/" target="_blank" rel="noopener noreferrer"><i class="fab fa-steam"></i>Steam</a></li>
+        <li><a href="mailto:i.am@michaelkoshik.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-envelope"></i>E-mail</a></li>
+        <li><a href="https://blog.michaelkoshik.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-blog"></i>Blog</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <audio id="bg-music" src="assets/audio/background.mp3" loop></audio>
+  <button class="audio-toggle" id="audio-toggle"><i id="audio-icon" class="fas fa-volume-up"></i></button>
+
+  <script>
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    const overlay = document.getElementById('start-overlay');
+    const startBtn = document.getElementById('start-btn');
+    const audio = document.getElementById('bg-music');
+
+    startBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+
+      audio.play().catch(() => { });
+
+      const cols = document.querySelectorAll('.column');
+      cols.forEach((col, i) => {
+        setTimeout(() => col.classList.add('visible'), 120 * i);
+      });
+    });
+
+    const card = document.getElementById('card');
+    document.addEventListener('mousemove', e => {
+      const x = (window.innerWidth/2 - e.clientX)/50;
+      const y = (window.innerHeight/2 - e.clientY)/50;
+      card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    });
+    document.addEventListener('mouseleave', () => {
+      card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
+
+    const toggleBtn = document.getElementById('audio-toggle');
+    const icon = document.getElementById('audio-icon');
+    toggleBtn.addEventListener('click', () => {
+      audio.muted = !audio.muted;
+      icon.className = audio.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+    });
+  </script>
+</body>
+</html>
