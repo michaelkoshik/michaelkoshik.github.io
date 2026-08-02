@@ -9,42 +9,101 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo-180x180.png">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="assets/images/logo-512x512.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --bg-color: #f9fafb;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --icon-bg: #fee2e2;
+            --icon-color: #ef4444;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #111827;
+                --text-main: #f9fafb;
+                --text-muted: #9ca3af;
+                --icon-bg: #7f1d1d;
+                --icon-color: #fca5a5;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f3f4f6;
-            color: #374151;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             display: flex;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            justify-content: center;
+            min-height: 100vh;
             text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+
         .container {
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            max-width: 500px;
-            width: 90%;
+            max-width: 90%;
+            padding: 2rem;
+            animation: fadeIn 0.5s ease-in-out;
         }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px;
+            height: 64px;
+            background-color: var(--icon-bg);
+            color: var(--icon-color);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem auto;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
         h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #111827;
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
         }
+
         p {
-            font-size: 16px;
-            color: #6b7280;
-            margin: 0;
+            font-weight: 400;
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Sorry, the page is temporarily unavailable.</h1>
-        <p>Please try again later.</p>
+        <div class="icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+        </div>
+        
+        <h1>Sorry, the page is unavailable.</h1>
+        <p>Please come back later.</p>
     </div>
 </body>
 </html>
